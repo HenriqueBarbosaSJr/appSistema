@@ -11,7 +11,7 @@ const btnFecharModal = document.getElementById('btnFecharModal');
 consultaAPI();
 
 btnIncluir.onclick = ()=>{
-    modalProdutos.show();
+    modalProdutos.showModal();
 };
 
 btnFecharModal.onclick = ()=>{

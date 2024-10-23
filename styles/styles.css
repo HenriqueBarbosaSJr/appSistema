@@ -27,6 +27,64 @@ p {
   margin-bottom: 15px;
 }
 
+/* Style dos container da aplicação */ 
+#container{
+  text-align: center;
+  margin-left: 6%;
+  margin-right: 6%;
+}
+
+#container h2{
+  color: #fff;
+}
+
+#containerHead{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style do modal */
+
+
+dialog::backdrop{
+  background-color: rgb(0 0 0 / .5);
+}
+
+
+#modalProdutos{
+  height: 400px;
+  width: 530px;
+  border: none;
+  border-radius: .6rem;
+  box-shadow: 0 0 1em rgb(0 0 0 / .3);
+}
+
+#containerModal{
+  display: flex; 
+  text-align: left;
+  margin-left: 30px;
+  font-size: large;
+}
+
+
+#containerInput{
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+
+}
+
+#containerInput input{
+  margin: 4px;
+  margin-bottom: 14px;
+  width: 350px;
+}
+
+
+
+/* Botões e ícones */
+
 .btn {
     height: 25px;
     width: 70px;
@@ -39,10 +97,18 @@ p {
     }
     .btn:hover {
         background: rgb(0,3,255);
-    background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
-    
+    background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);    
 }
 
+.icons {
+  height: 16px;
+  width: 16px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+/* Tabelas */
 
 #tbProdutos {
   font-family: Arial, Helvetica, sans-serif;
@@ -67,21 +133,11 @@ p {
   color: white;
 }
 
-#container{
+#tbControler {
   text-align: center;
-  margin-left: 6%;
-  margin-right: 6%;
 }
 
-#containerHead{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#container h2{
-  color: #fff;
-}
+/* Container Filtrar */ 
 
 #containerFiltrar{
   display: flex;
@@ -106,41 +162,5 @@ p {
   margin-bottom: 15px;
 }
 
-.icons {
-  height: 16px;
-  width: 16px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
 
-dialog::backdrop{
-  background-color: black;
-}
-
-
-#modalProdutos{
-  height: 400px;
-  width: 530px;
-  border: none;
-  border-radius: .6rem;
-  box-shadow: 0 0 1em rgb(0 0 0 / .3);
-}
-
-#containerModal{
-  display: flex;  
-}
-
-
-#containerInput{
-  display: flex;
-  flex-direction: column;
-  padding-top: 10px;
-
-}
-
-#containerInput input{
-  margin: 4px;
-  margin-bottom: 14px;
-  width: 350px;
-}
 

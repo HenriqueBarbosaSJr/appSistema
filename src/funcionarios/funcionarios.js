@@ -24,7 +24,7 @@ export function atualizarTabela(dados){
                         '<td>' + dados[i].departamento + '</td>' +
                         '<td>' + dados[i].funcao + '</td>' +
                         '<td>' + dados[i].salario + '</td>' +
-                        '<td>' +
+                        '<td id="tbControler">' +
                             '<a id="btnTrash" onclick="deletePro(this)"><img src="../assets/trash.png" class="icons"></a>' +
                             '<a id="btnEdit" onclick="alteraPro(this)"><img src="../assets/edit2.png" class="icons"></a>' +
                         '</td>' +
