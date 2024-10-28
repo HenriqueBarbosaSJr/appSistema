@@ -10,7 +10,7 @@ export async function consultaAPI(){
     console.log('consultando...');
     const response = await funcionarios;
     atualizarTabela(response.banco);
-    return response.banco
+    return response.banco;
 }
 
 
@@ -25,11 +25,22 @@ export function atualizarTabela(dados){
                         '<td>' + dados[i].funcao + '</td>' +
                         '<td>' + dados[i].salario + '</td>' +
                         '<td id="tbControler">' +
-                            '<a id="btnTrash" onclick="deletePro(this)"><img src="../assets/trash.png" class="icons"></a>' +
-                            '<a id="btnEdit" onclick="alteraPro(this)"><img src="../assets/edit2.png" class="icons"></a>' +
+                            '<img id="btnTrash" src="../assets/trash.png" class="icons">' +
+                            '<img id="btnEdit" src="../assets/edit2.png" class="icons">' +
                         '</td>' +
                   '</tr>'
         rows += tr;   
     }
     tbodyList.innerHTML = rows
 }
+
+export function filtrar(nomeBusca, response){
+    console.log('filtrando...');
+    console.log(response);
+    
+    const produtosFiltrados = response.filter(funcionario =>
+        funcionario.nome.toLowerCase().includes(nomeBusca.toLowerCase())
+    );
+    atualizarTabela(produtosFiltrados);  
+}
+
