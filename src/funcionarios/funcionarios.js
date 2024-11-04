@@ -1,4 +1,5 @@
-import funcionarios from '../../databases/banco.js';
+import { api } from '../../services/api.js';
+
 
 // Referências do DOM HTM
 const tbodyList = document.getElementById('tbodyList');
@@ -8,9 +9,14 @@ const tbodyList = document.getElementById('tbodyList');
 
 export async function consultaAPI(){
     console.log('consultando...');
-    const response = await funcionarios;
-    atualizarTabela(response.banco);
-    return response.banco;
+    try {
+        const response = await api.get('listfunc');
+        //console.log(response);
+        atualizarTabela(response.data.result);
+        return response.data.result;
+    } catch (error) {
+        console.log({'MSG':error});   
+    }
 }
 
 
@@ -44,3 +50,11 @@ export function filtrar(nomeBusca, response){
     atualizarTabela(produtosFiltrados);  
 }
 
+export function cadastrar(dados){
+    try {
+        const response = api.post('createfunc', dados);
+        
+    } catch (error) {
+        console.log({'MSG':error});  
+    }
+}

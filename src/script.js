@@ -1,10 +1,17 @@
-import { consultaAPI, filtrar } from './funcionarios/funcionarios.js';
+import { cadastrar, consultaAPI, filtrar } from './funcionarios/funcionarios.js';
 
 
 // Referências do DOM HTML
 const btnIncluir = document.getElementById('btnIncluir');
+
 const modalProdutos = document.getElementById('modalProdutos');
 const btnFecharModal = document.getElementById('btnFecharModal');
+const btnIncluirModal = document.getElementById('btnIncluirModal');
+const inputNome = document.getElementById('inputNome');
+const inputDep = document.getElementById('inputDep');
+const inputFunc = document.getElementById('inputFunc');
+const inputSal = document.getElementById('inputSal');
+
 const btnFiltrar = document.getElementById('btnFiltrar');
 const inpFiltrarNome = document.getElementById('inpFiltrarNome');
 const tbodyList = document.getElementById('tbodyList');
@@ -25,6 +32,18 @@ btnFiltrar.onclick = ()=>{
     filtrar(busca , response);
 };
 
+btnIncluirModal.onclick = ()=>{
+    let dados ={
+        'nome' : inputNome.value,
+        'departamento' : inputDep.value,
+        'funcao' : inputFunc.value,
+        'salario' : inputSal.value,
+    }
+    //console.log(dados);
+    cadastrar(dados)
+    
+
+};
 
 tbodyList.addEventListener('click', (event) => {
     const target = event.target;
