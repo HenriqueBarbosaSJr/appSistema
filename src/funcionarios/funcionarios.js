@@ -3,9 +3,23 @@ import { api } from '../../services/api.js';
 
 // Referências do DOM HTM
 const tbodyList = document.getElementById('tbodyList');
-
+const modalProdutos = document.getElementById('modalProdutos');
+const inputId = document.getElementById('inputId');
+const inputNome = document.getElementById('inputNome');
+const inputDep = document.getElementById('inputDep');
+const inputFunc = document.getElementById('inputFunc');
+const inputSal = document.getElementById('inputSal');
 
 //Lógica
+
+function limparModal(){
+    inputId.value = '';
+    inputNome.value = '';
+    inputDep.value = '';
+    inputFunc.value = '';
+    inputSal.value = '';
+}
+
 
 export async function consultaAPI(){
     console.log('consultando...');
@@ -50,11 +64,22 @@ export function filtrar(nomeBusca, response){
     atualizarTabela(produtosFiltrados);  
 }
 
-export function cadastrar(dados){
+export async function cadastrar(dados){
     try {
-        const response = api.post('createfunc', dados);
+        const response = await api.post('createfunc', dados);
+        
+        if (response.status == 201){
+            limparModal();
+            modalProdutos.close();
+            Swal.fire({
+                title: "Cadastro efetuado com sucesso !",
+                icon: "success"
+              });
+            consultaAPI(); 
+        }
         
     } catch (error) {
         console.log({'MSG':error});  
     }
 }
+
