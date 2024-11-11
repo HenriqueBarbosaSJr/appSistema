@@ -83,3 +83,25 @@ export async function cadastrar(dados){
     }
 }
 
+
+
+export async function deletar(id){
+    try {
+        
+        const response =  await api.delete(`func/${id}`);
+        console.log(response);
+        
+        if (response.status == 200){
+            Swal.fire({
+                title: "Registro deletado com sucesso !",
+                icon: "success"
+              });
+            consultaAPI(); 
+        }
+
+    } catch (error) {
+        console.log({'MSG':error});  
+    }
+
+}
+

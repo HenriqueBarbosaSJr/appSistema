@@ -1,4 +1,4 @@
-import { cadastrar, consultaAPI, filtrar } from './funcionarios/funcionarios.js';
+import { cadastrar, consultaAPI, deletar, filtrar } from './funcionarios/funcionarios.js';
 
 
 // Referências do DOM HTML
@@ -41,8 +41,6 @@ btnIncluirModal.onclick = ()=>{
     }
     //console.log(dados);
     cadastrar(dados)
-    
-
 };
 
 tbodyList.addEventListener('click', (event) => {
@@ -61,11 +59,9 @@ tbodyList.addEventListener('click', (event) => {
             sal: row.cells[4].innerHTML
             
         }     
-        console.log(dados);
           
         if (target.id == 'btnTrash') {
-            exibirDadosModal(dados , 1)
-            
+            deletar(dados.id)
         }
        
         else if (target.id == 'btnEdit') {
