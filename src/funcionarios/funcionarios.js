@@ -83,11 +83,8 @@ export async function cadastrar(dados){
     }
 }
 
-
-
 export async function deletar(id){
-    try {
-        
+    try {    
         const response =  await api.delete(`func/${id}`);
         console.log(response);
         
@@ -102,6 +99,51 @@ export async function deletar(id){
     } catch (error) {
         console.log({'MSG':error});  
     }
-
 }
 
+
+export function exibirDadosModal(dados){
+    modalProdutos.showModal();
+    inputId.value = dados.id;
+    inputNome.value = dados.nome;
+    inputDep.value = dados.dep;
+    inputFunc.value = dados.funcao;
+    inputSal.value = dados.sal;
+}
+
+
+export function pegarDados(){
+    const nome = inputNome.value;
+    const dep = inputDep.value;
+    const funcao = inputFunc.value;
+    const sal = parseFloat(inputSal.value);
+    
+    const dados ={
+        nome : nome,
+        dep : dep,
+        funcao : funcao,
+        sal : sal,
+    }
+    return dados;
+}
+
+export async function editar(dados) {
+    console.log('Editando produto...');
+    console.log(dados.id);
+    
+    console.log(dados);
+    
+    try {
+        const response = await api.put(`func/${dados.id}`, dados);
+        if (response.status === 201) {
+            console.log('Funionário alterado com sucesso');
+            Swal.fire({
+                title: "Funionário Alterado com sucesso!",
+                icon: "success"
+              });
+            consultaAPI();
+        }
+    } catch (error) {
+        console.error('Erro ao deletar funionário:', error);
+    }
+} 

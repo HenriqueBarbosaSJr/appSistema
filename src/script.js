@@ -1,4 +1,4 @@
-import { cadastrar, consultaAPI, deletar, filtrar } from './funcionarios/funcionarios.js';
+import { cadastrar, consultaAPI, deletar, editar, exibirDadosModal, filtrar, pegarDados } from './funcionarios/funcionarios.js';
 
 
 // Referências do DOM HTML
@@ -43,15 +43,16 @@ btnIncluirModal.onclick = ()=>{
     cadastrar(dados)
 };
 
+
 tbodyList.addEventListener('click', (event) => {
     const target = event.target;
-    
+    let dados;
     
     // Verifica se o clique foi em uma imagem
     if (target.tagName === 'IMG') { 
         const row = target.closest('tr');  
         
-        const dados = {
+        dados = {
             id: row.cells[0].innerHTML,
             nome: row.cells[1].innerHTML,
             dep: row.cells[2].innerHTML,
@@ -65,7 +66,7 @@ tbodyList.addEventListener('click', (event) => {
         }
        
         else if (target.id == 'btnEdit') {
-            exibirDadosModal(dados, 2)
+            exibirDadosModal(dados) ;
         }
     }
 });
