@@ -1,4 +1,4 @@
-import { cadastrar, consultaAPI, deletar, editar, exibirDadosModal, filtrar, pegarDados } from './funcionarios/funcionarios.js';
+import { cadastrar, consultaAPI, deletar, editar, exibirDadosModal, filtrar, limparModal, pegarDados } from './funcionarios/funcionarios.js';
 
 
 // Referências do DOM HTML
@@ -7,6 +7,8 @@ const btnIncluir = document.getElementById('btnIncluir');
 const modalProdutos = document.getElementById('modalProdutos');
 const btnFecharModal = document.getElementById('btnFecharModal');
 const btnIncluirModal = document.getElementById('btnIncluirModal');
+
+const inputId = document.getElementById('inputId');
 const inputNome = document.getElementById('inputNome');
 const inputDep = document.getElementById('inputDep');
 const inputFunc = document.getElementById('inputFunc');
@@ -20,6 +22,7 @@ const tbodyList = document.getElementById('tbodyList');
 let response = await consultaAPI();
 
 btnIncluir.onclick = ()=>{
+    limparModal();
     modalProdutos.showModal();
 };
 
@@ -55,9 +58,9 @@ tbodyList.addEventListener('click', (event) => {
         dados = {
             id: row.cells[0].innerHTML,
             nome: row.cells[1].innerHTML,
-            dep: row.cells[2].innerHTML,
+            departamento: row.cells[2].innerHTML,
             funcao: row.cells[3].innerHTML,
-            sal: row.cells[4].innerHTML
+            salario: row.cells[4].innerHTML
             
         }     
           
@@ -66,8 +69,14 @@ tbodyList.addEventListener('click', (event) => {
         }
        
         else if (target.id == 'btnEdit') {
+            inputId.disabled = true;
             exibirDadosModal(dados) ;
         }
     }
 });
 
+
+btnAlterarModal.onclick = ()=>{
+    const dados = pegarDados();
+    editar(dados);
+};

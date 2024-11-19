@@ -12,12 +12,14 @@ const inputSal = document.getElementById('inputSal');
 
 //Lógica
 
-function limparModal(){
+export function limparModal(){
     inputId.value = '';
     inputNome.value = '';
     inputDep.value = '';
     inputFunc.value = '';
     inputSal.value = '';
+    inputId.disabled = false;
+    inputId.focus();
 }
 
 
@@ -45,8 +47,8 @@ export function atualizarTabela(dados){
                         '<td>' + dados[i].funcao + '</td>' +
                         '<td>' + dados[i].salario + '</td>' +
                         '<td id="tbControler">' +
-                            '<img id="btnTrash" src="../assets/trash.png" class="icons">' +
-                            '<img id="btnEdit" src="../assets/edit2.png" class="icons">' +
+                            '<img id="btnTrash" src="../../assets/trash.png" class="icons">' +
+                            '<img id="btnEdit" src="../../assets/edit2.png" class="icons">' +
                         '</td>' +
                   '</tr>'
         rows += tr;   
@@ -106,23 +108,25 @@ export function exibirDadosModal(dados){
     modalProdutos.showModal();
     inputId.value = dados.id;
     inputNome.value = dados.nome;
-    inputDep.value = dados.dep;
+    inputDep.value = dados.departamento;
     inputFunc.value = dados.funcao;
-    inputSal.value = dados.sal;
+    inputSal.value = dados.salario;
 }
 
 
 export function pegarDados(){
+    const id = inputId.value;
     const nome = inputNome.value;
-    const dep = inputDep.value;
+    const departamento = inputDep.value;
     const funcao = inputFunc.value;
-    const sal = parseFloat(inputSal.value);
+    const salario = parseFloat(inputSal.value);
     
     const dados ={
+        id : id,
         nome : nome,
-        dep : dep,
+        departamento : departamento,
         funcao : funcao,
-        sal : sal,
+        salario : salario,
     }
     return dados;
 }
@@ -136,6 +140,7 @@ export async function editar(dados) {
     try {
         const response = await api.put(`func/${dados.id}`, dados);
         if (response.status === 201) {
+            modalProdutos.close();
             console.log('Funionário alterado com sucesso');
             Swal.fire({
                 title: "Funionário Alterado com sucesso!",
